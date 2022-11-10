@@ -7,6 +7,7 @@ if os.path.exists("env.py"):
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY')
 
+
 @app.route('/')
 def index():
     return render_template("index.html")
@@ -19,6 +20,7 @@ def about():
         data = json.load(json_data)
     return render_template("about.html", page_title="About", company=data)
 
+
 @app.route("/about/<member_name>")
 def about_member(member_name):
     member = {}
@@ -28,6 +30,7 @@ def about_member(member_name):
             if obj["url"] == member_name:
                 member = obj
     return render_template("member.html", member=member)
+
 
 @app.route("/contact", methods=['GET', 'POST'])
 def contact():
